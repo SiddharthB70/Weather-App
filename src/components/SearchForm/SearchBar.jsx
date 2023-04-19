@@ -1,15 +1,16 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useState } from "react";
 
-const SearchBar = () => {
-    const [searchInput, setSearchInput] = useState("");
-    const [value, setValue] = useState(null);
+import uniq from "lodash.uniq";
 
-    const check = [];
+const SearchBar = ({ searchInput, setSearchInput, fetchedLocations }) => {
+    const [value, setValue] = useState(null);
 
     return (
         <Autocomplete
-            options={check}
+            options={uniq(
+                fetchedLocations.map((location) => location.display_name)
+            )}
             renderInput={(params) => {
                 return (
                     <TextField
@@ -19,7 +20,7 @@ const SearchBar = () => {
                 );
             }}
             sx={{
-                width: "300px",
+                width: "600px",
             }}
             inputValue={searchInput}
             onInputChange={(e, newValue) => {
