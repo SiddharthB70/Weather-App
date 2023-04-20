@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import SearchForm from "./components/SearchForm/SearchForm";
+import SearchBar from "./components/SearchForm/SearchBar";
 
 const App = () => {
     return (
         <div>
-            <SearchForm />
+            <SearchBar />
         </div>
     );
 };
