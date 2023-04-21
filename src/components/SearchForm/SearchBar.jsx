@@ -5,9 +5,9 @@ import { Autocomplete, TextField, debounce } from "@mui/material";
 
 import searchLocations from "../../services/searchLocations";
 
-const SearchBar = () => {
+const SearchBar = ({ location, setLocation }) => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [location, setLocation] = useState("");
+
     const suggestions = useQuery(
         ["suggestions", searchQuery],
         () => {
@@ -34,7 +34,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         //prevent unnecessary searches - query length < 4 or upon selecting option
-        if (searchQuery.length < 4 || searchQuery === location) {
+        if (searchQuery.length < 4 || searchQuery === location.text) {
             debounceSearch.clear();
             return;
         }
@@ -57,9 +57,11 @@ const SearchBar = () => {
             sx={{
                 width: "500px",
             }}
-            value={location}
             onChange={(event, newLocation, reason) => {
-                if (reason === "selectOption") setLocation(newLocation);
+                if (reason === "selectOption")
+                    setLocation(
+                        suggestions.data.find((s) => s.text === newLocation)
+                    );
             }}
             autoComplete
             freeSolo
