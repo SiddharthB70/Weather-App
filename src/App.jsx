@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import getLocationData from "./services/getLocationData";
+import getLocationData from "./services/axiosCalls/getLocationData";
 
 import SearchBar from "./components/SearchForm/SearchBar";
+import LocationSection from "./components/LocationSection/LocationSection";
 
 const App = () => {
-    const [location, setLocation] = useState({});
+    const [location, setLocation] = useState("");
 
     const locationData = useQuery(
         ["locationData", location],
@@ -14,10 +15,9 @@ const App = () => {
             return getLocationData(location);
         },
         {
-            refetchOnMount: false,
-            refetchOnWindowFocus: false,
             retry: false,
-            initialData: {},
+            enabled: Boolean(location),
+            staleTime: Infinity,
         }
     );
 
@@ -27,6 +27,7 @@ const App = () => {
                 setLocation={setLocation}
                 location={location}
             />
+            {locationData.data && <LocationSection location={location} />}
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Autocomplete, TextField, debounce } from "@mui/material";
 
-import searchLocations from "../../services/searchLocations";
+import searchLocations from "../../services/axiosCalls/searchLocations";
 
 const SearchBar = ({ location, setLocation }) => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -14,11 +14,11 @@ const SearchBar = ({ location, setLocation }) => {
             return searchLocations(searchQuery);
         },
         {
+            enabled: false,
             retry: false,
             initialData: {
                 suggestions: [],
             },
-            staleTime: Infinity,
             select: (data) => {
                 return data.suggestions;
             },
