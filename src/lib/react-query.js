@@ -4,6 +4,7 @@ const queryConfig = {
     queries: {
         retry: false,
         refetchOnWindowFocus: false,
+        refetchOnMount: false,
     },
 };
 
