@@ -1,10 +1,8 @@
-import axios from "axios";
+import { locationAxios } from "@/lib/axios";
 
 const searchLocations = async (location) => {
-    const response = await axios.get(
-        `https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?text=${location}&f=json&token=${
-            import.meta.env.VITE_ARC_API_KEY
-        }`
+    const response = await locationAxios.get(
+        `/suggest?text=${location}&f=json`
     );
     return response.data;
 };
