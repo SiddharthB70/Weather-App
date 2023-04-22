@@ -5,7 +5,7 @@ const LocationSection = ({ regions }) => {
 
     return (
         <Stack>
-            {locationRegions.map((location, index) => {
+            {locationRegions.map((location) => {
                 if (!location) return null;
                 return (
                     <Typography
