@@ -1,12 +1,14 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { useLocationDetails } from "./api/locationDetails";
 import { Stack, Typography } from "@mui/material";
 
 const LocationSection = ({ location }) => {
-    const queryClient = useQueryClient();
+    const locationData = useLocationDetails(location);
+    if (locationData.isLoading) {
+        return null;
+    }
 
-    const locationData = queryClient.getQueryData(["locationData", location]);
     const locationRegions = Object.values(
-        locationData.candidates[0].attributes
+        locationData.data.candidates[0].attributes
     );
 
     return (

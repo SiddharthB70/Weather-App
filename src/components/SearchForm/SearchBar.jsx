@@ -1,45 +1,13 @@
-import { useState, useCallback, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
-import { Autocomplete, TextField, debounce } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 
-import searchLocations from "../../services/axiosCalls/searchLocations";
+import { useSuggestions } from "./api/suggestions";
 
-const SearchBar = ({ location, setLocation }) => {
+const SearchBar = ({ setLocation }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
-    const suggestions = useQuery(
-        ["suggestions", searchQuery],
-        () => {
-            return searchLocations(searchQuery);
-        },
-        {
-            enabled: false,
-            retry: false,
-            initialData: {
-                suggestions: [],
-            },
-            select: (data) => {
-                return data.suggestions;
-            },
-        }
-    );
-
-    const debounceSearch = useCallback(
-        debounce(() => {
-            suggestions.refetch();
-        }, 1000),
-        []
-    );
-
-    useEffect(() => {
-        //prevent unnecessary searches - query length < 4 or upon selecting option
-        if (searchQuery.length < 4 || searchQuery === location.text) {
-            debounceSearch.clear();
-            return;
-        }
-        debounceSearch();
-    }, [searchQuery, debounceSearch, location]);
+    const suggestions = useSuggestions(searchQuery);
 
     return (
         <Autocomplete
