@@ -22,7 +22,7 @@ const SearchBar = ({ setLocation, location }) => {
                 setSearchQuery(newSearchQuery);
             }}
             sx={{
-                width: "500px",
+                width: "400px",
             }}
             onChange={(event, newLocation, reason) => {
                 if (reason === "selectOption")

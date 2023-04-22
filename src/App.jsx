@@ -5,6 +5,8 @@ import LocationSection from "./components/LocationSection/LocationSection";
 import WeatherSection from "./components/WeatherSection/WeatherSection";
 import { useLocationDetails } from "./api/locationDetails";
 
+import { Grid } from "@mui/material";
+
 const App = () => {
     const [location, setLocation] = useState("");
     const locationData = useLocationDetails(location);
@@ -16,18 +18,41 @@ const App = () => {
     }
 
     return (
-        <div>
-            <SearchBar
-                setLocation={setLocation}
-                location={location.text}
-            />
-            {locationData.isSuccess && (
-                <div>
-                    <LocationSection regions={locationRegions} />
+        <Grid
+            container
+            height="100vh"
+        >
+            <Grid
+                item
+                xs="auto"
+                container
+                direction="column"
+                spacing={3}
+                sx={{
+                    marginTop: "8rem",
+                }}
+            >
+                <Grid item>
+                    <SearchBar
+                        setLocation={setLocation}
+                        location={location.text}
+                    />
+                </Grid>
+                <Grid item>
+                    {locationData.isSuccess && (
+                        <LocationSection regions={locationRegions} />
+                    )}
+                </Grid>
+            </Grid>
+            <Grid
+                item
+                xs={true}
+            >
+                {locationData.isSuccess && (
                     <WeatherSection coordinates={locationCoordinates} />
-                </div>
-            )}
-        </div>
+                )}
+            </Grid>
+        </Grid>
     );
 };
 
