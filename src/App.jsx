@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import SearchBar from "./components/SearchForm/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import LocationSection from "./components/LocationSection/LocationSection";
 import WeatherSection from "./components/WeatherSection/WeatherSection";
 import { useLocationDetails } from "./api/locationDetails";

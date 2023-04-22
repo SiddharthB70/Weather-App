@@ -4,7 +4,7 @@ import { weatherAxios } from "@/lib/axios";
 
 export const getDailyWeather = async (coordinates) => {
     const response = await weatherAxios.get(
-        `/forecast?latitude=${coordinates.y}&longitude=${coordinates.x}&current_weather=true&timezone=auto`
+        `?latitude=${coordinates.y}&longitude=${coordinates.x}&daily=weathercode,apparent_temperature_max,apparent_temperature_min&timezone=auto`
     );
     return response.data;
 };
