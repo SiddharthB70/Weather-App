@@ -10,7 +10,15 @@ export const getLocationDetails = async (location) => {
 };
 
 export const useLocationDetails = (location) => {
-    return useQuery(["locationData", location], () =>
-        getLocationDetails(location)
+    return useQuery(
+        ["locationData", location],
+        () => getLocationDetails(location),
+        {
+            staleTime: Infinity,
+            select: (data) => {
+                return data.candidates[0];
+            },
+            enabled: Boolean(location),
+        }
     );
 };

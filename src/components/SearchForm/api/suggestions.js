@@ -10,7 +10,7 @@ export const searchLocation = async (location) => {
     return response.data;
 };
 
-export const useSuggestions = (searchQuery) => {
+export const useSuggestions = (searchQuery, location) => {
     const debouncedQuery = useDebounce(searchQuery, 500);
     const MIN_QUERY_LENGTH = 3;
 
@@ -20,13 +20,16 @@ export const useSuggestions = (searchQuery) => {
             return searchLocation(debouncedQuery);
         },
         {
-            enabled: Boolean(debouncedQuery.length > MIN_QUERY_LENGTH),
-            initialData: {
+            enabled:
+                debouncedQuery.length > MIN_QUERY_LENGTH &&
+                debouncedQuery !== location, //prevent api call on selecting option
+            placeholderData: {
                 suggestions: [],
             },
             select: (data) => {
                 return data.suggestions;
             },
+            staleTime: Infinity,
         }
     );
 };

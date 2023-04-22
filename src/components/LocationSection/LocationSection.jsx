@@ -1,15 +1,7 @@
-import { useLocationDetails } from "./api/locationDetails";
 import { Stack, Typography } from "@mui/material";
 
-const LocationSection = ({ location }) => {
-    const locationData = useLocationDetails(location);
-    if (locationData.isLoading) {
-        return null;
-    }
-
-    const locationRegions = Object.values(
-        locationData.data.candidates[0].attributes
-    );
+const LocationSection = ({ regions }) => {
+    const locationRegions = Object.values(regions);
 
     return (
         <Stack>

@@ -4,10 +4,9 @@ import { Autocomplete, TextField } from "@mui/material";
 
 import { useSuggestions } from "./api/suggestions";
 
-const SearchBar = ({ setLocation }) => {
+const SearchBar = ({ setLocation, location }) => {
     const [searchQuery, setSearchQuery] = useState("");
-
-    const suggestions = useSuggestions(searchQuery);
+    const suggestions = useSuggestions(searchQuery, location);
 
     return (
         <Autocomplete
