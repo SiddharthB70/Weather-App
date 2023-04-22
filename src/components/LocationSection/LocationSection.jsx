@@ -16,7 +16,7 @@ const LocationSection = ({ location }) => {
                 return (
                     <Typography
                         key={location}
-                        variant={`h${index + 2}`}
+                        variant={"h4"}
                     >
                         {location}
                     </Typography>

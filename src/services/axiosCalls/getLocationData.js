@@ -6,7 +6,7 @@ const getLocationData = async (location) => {
             location.text
         }&magicKey=${
             location.magicKey
-        }&outFields=City,Region,Cntryname,Location&langCode=EN&f=json&token=${
+        }&category=Populated Place,Address,POI&outFields=District,City,Region,Cntryname,Location&langCode=EN&f=json&token=${
             import.meta.env.VITE_ARC_API_KEY
         }`
     );
