@@ -18,7 +18,7 @@ module.exports = {
     plugins: ["react-hooks"],
     rules: {
         quotes: ["error", "double"],
-        indent: ["error", 4],
+        indent: ["error", 4, { SwitchCase: 1 }],
         semi: ["error", "always"],
         "no-unused-vars": ["warn"],
         "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks

@@ -7,9 +7,13 @@ import AirIcon from "@mui/icons-material/Air";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
+import { getDescription } from "./utils/getDescription";
+
 const CurrentWeather = ({ currentWeather }) => {
     const { timezone, current_weather: weather } = currentWeather;
     const { temperature, windspeed, weathercode } = weather;
+
+    const description = getDescription(weathercode);
 
     const presentDate = new Date();
     const formattedDate = formatInTimeZone(presentDate, timezone, "PPP");
@@ -65,7 +69,7 @@ const CurrentWeather = ({ currentWeather }) => {
                 >
                     <DescriptionIcon />
                 </ListItemIcon>
-                <ListItemText primary={`${weathercode}`} />
+                <ListItemText primary={`${description}`} />
             </ListItem>
         </List>
     );
