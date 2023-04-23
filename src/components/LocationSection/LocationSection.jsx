@@ -1,8 +1,9 @@
 import { Stack, Typography } from "@mui/material";
+import uniq from "lodash.uniq";
 
 const LocationSection = ({ regions }) => {
-    const locationRegions = Object.values(regions).filter(
-        (location) => location !== ""
+    const locationRegions = uniq(
+        Object.values(regions).filter((location) => location !== "")
     );
 
     return (
