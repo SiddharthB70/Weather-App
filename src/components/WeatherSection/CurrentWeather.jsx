@@ -75,7 +75,10 @@ const CurrentWeather = ({ currentWeather }) => {
                 <ListItemText primary={`${descriptionText}`} />
             </ListItem>
             <ListItem>
-                <img src={descriptionIcon} />
+                <img
+                    src={descriptionIcon}
+                    width="160px"
+                />
             </ListItem>
         </List>
     );
