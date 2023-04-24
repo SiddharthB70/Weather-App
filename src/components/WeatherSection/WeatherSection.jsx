@@ -4,6 +4,8 @@ import { useCurrentWeather } from "./api/weather";
 
 import CurrentWeather from "./CurrentWeather";
 
+import { Grid } from "@mui/material";
+
 const WeatherSection = ({ coordinates }) => {
     const dailyWeather = useDailyWeather(coordinates);
     const hourlyWeather = useHourlyWeather(coordinates);
@@ -18,9 +20,11 @@ const WeatherSection = ({ coordinates }) => {
     }
 
     return (
-        <div>
-            <CurrentWeather currentWeather={currentWeather.data} />
-        </div>
+        <Grid>
+            <Grid item>
+                <CurrentWeather currentWeather={currentWeather.data} />
+            </Grid>
+        </Grid>
     );
 };
 

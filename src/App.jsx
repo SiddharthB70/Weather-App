@@ -47,6 +47,9 @@ const App = () => {
             <Grid
                 item
                 xs={true}
+                sx={{
+                    marginTop: "8rem",
+                }}
             >
                 {locationData.isSuccess && (
                     <WeatherSection coordinates={locationCoordinates} />

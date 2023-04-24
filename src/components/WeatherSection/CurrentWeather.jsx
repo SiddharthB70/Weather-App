@@ -11,12 +11,15 @@ import { getDescription } from "./utils/getDescription";
 
 const CurrentWeather = ({ currentWeather }) => {
     const { timezone, current_weather: weather } = currentWeather;
-    const { temperature, windspeed, weathercode } = weather;
+    const { temperature, windspeed, weathercode, is_day: isDay } = weather;
 
-    const description = getDescription(weathercode);
+    const { descriptionText, descriptionIcon } = getDescription(
+        weathercode,
+        isDay
+    );
 
     const presentDate = new Date();
-    const formattedDate = formatInTimeZone(presentDate, timezone, "PPP");
+    const formattedDate = formatInTimeZone(presentDate, timezone, "PPPP");
     const formattedTime = formatInTimeZone(presentDate, timezone, "p");
 
     return (
@@ -59,7 +62,7 @@ const CurrentWeather = ({ currentWeather }) => {
                 >
                     <AirIcon />
                 </ListItemIcon>
-                <ListItemText primary={`${windspeed}`} />
+                <ListItemText primary={`${windspeed} km/h`} />
             </ListItem>
             <ListItem>
                 <ListItemIcon
@@ -69,7 +72,10 @@ const CurrentWeather = ({ currentWeather }) => {
                 >
                     <DescriptionIcon />
                 </ListItemIcon>
-                <ListItemText primary={`${description}`} />
+                <ListItemText primary={`${descriptionText}`} />
+            </ListItem>
+            <ListItem>
+                <img src={descriptionIcon} />
             </ListItem>
         </List>
     );
