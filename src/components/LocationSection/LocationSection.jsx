@@ -9,7 +9,7 @@ const LocationSection = ({ regions }) => {
     return (
         <Stack
             display="block"
-            width="max-content"
+            width="400px"
         >
             {locationRegions.map((location, index) => {
                 if (!location) return null;
@@ -17,6 +17,7 @@ const LocationSection = ({ regions }) => {
                     <Typography
                         key={location}
                         variant={`h${index + 3}`}
+                        sx={{ overflowWrap: "break-word" }}
                     >
                         {location}
                     </Typography>

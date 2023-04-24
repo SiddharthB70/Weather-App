@@ -28,9 +28,6 @@ const App = () => {
                 container
                 direction="column"
                 spacing={3}
-                sx={{
-                    marginTop: "8rem",
-                }}
             >
                 <Grid item>
                     <SearchBar
@@ -46,10 +43,7 @@ const App = () => {
             </Grid>
             <Grid
                 item
-                xs={true}
-                sx={{
-                    marginTop: "8rem",
-                }}
+                xs="auto"
             >
                 {locationData.isSuccess && (
                     <WeatherSection coordinates={locationCoordinates} />
