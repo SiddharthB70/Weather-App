@@ -14,10 +14,3 @@ export const useWeatherQuery = (queryKeys, coordinates, weatherParameters) => {
         return getData(coordinates, weatherParameters);
     });
 };
-
-export const useHourlyWeather = (coordinates) => {
-    const hourlyParameters =
-        "hourly=temperature_2m,windspeed_10m,winddirection_10m,weathercode&forecast_days=1";
-    const queryKeys = ["hourlyWeather", coordinates];
-    return useWeatherQuery(queryKeys, coordinates, hourlyParameters);
-};

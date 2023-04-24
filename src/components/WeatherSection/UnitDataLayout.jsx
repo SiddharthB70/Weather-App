@@ -4,7 +4,7 @@ const UnitDataLayout = ({ data }) => {
     return (
         <Grid
             item
-            width="150px"
+            width="130px"
         >
             <Typography variant="h5">{data.heading}</Typography>
             <div
@@ -14,7 +14,7 @@ const UnitDataLayout = ({ data }) => {
                     width: "100%",
                 }}
             ></div>
-            <Typography>{data.description}</Typography>
+            <Typography>{data.descriptionText}</Typography>
         </Grid>
     );
 };

@@ -4,6 +4,7 @@ import { TabContext, TabPanel, TabList } from "@mui/lab";
 import { Tab, Box } from "@mui/material";
 
 import DailyWeather from "./DailyWeather";
+import HourlyWeather from "./HourlyWeather";
 
 const WeatherTab = ({ coordinates }) => {
     const [tab, setTab] = useState("1");
@@ -27,7 +28,9 @@ const WeatherTab = ({ coordinates }) => {
                 <TabPanel value="1">
                     <DailyWeather coordinates={coordinates} />
                 </TabPanel>
-                <TabPanel value="2">Item two</TabPanel>
+                <TabPanel value="2">
+                    <HourlyWeather coordinates={coordinates} />
+                </TabPanel>
             </TabContext>
         </Box>
     );

@@ -1,30 +1,37 @@
-import { useDailyWeather } from "./hooks/useDailyWeather";
+import { useHourlyWeather } from "./hooks/useHourlyWeather";
 import { getDescription } from "./utils/getDescription";
 import UnitDataLayout from "./UnitDataLayout";
 
+import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
 import { Grid } from "@mui/material";
 import chunk from "lodash.chunk";
 
-const DailyWeather = ({ coordinates }) => {
-    const dailyWeather = useDailyWeather(coordinates);
-
-    if (dailyWeather.isLoading) {
+const HourlyWeather = ({ coordinates }) => {
+    const hourlyWeather = useHourlyWeather(coordinates);
+    if (hourlyWeather.isLoading) {
         return null;
     }
 
-    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    const { weathercode } = dailyWeather.data.daily;
-    const descriptors = weathercode.map((wc) => getDescription(wc));
+    const { is_day: isDay, time, weathercode } = hourlyWeather.data.hourly;
 
-    const weatherDetails = days.map((day, index) => {
+    const formattedTime = time.map((t) => {
+        return format(parseISO(t), "p");
+    });
+
+    const weatherDetails = formattedTime.map((ft, index) => {
+        let { descriptionText, descriptionIcon } = getDescription(
+            weathercode[index],
+            isDay[index]
+        );
         return {
-            heading: day,
-            descriptionText: descriptors[index].descriptionText,
-            descriptionIcon: descriptors[index].descriptionIcon,
+            heading: ft,
+            descriptionText,
+            descriptionIcon,
         };
     });
 
-    const COLUMNS = 3;
+    const COLUMNS = 6;
     const chunkWeatherDetails = chunk(weatherDetails, COLUMNS);
 
     return (
@@ -58,4 +65,4 @@ const DailyWeather = ({ coordinates }) => {
     );
 };
 
-export default DailyWeather;
+export default HourlyWeather;
