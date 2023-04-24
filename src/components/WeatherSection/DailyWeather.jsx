@@ -1,8 +1,9 @@
 import { useDailyWeather } from "./hooks/useDailyWeather";
-
 import { getDescription } from "./utils/getDescription";
+import UnitDataLayout from "./UnitDataLayout";
 
-import { Stack } from "@mui/material";
+import { Grid } from "@mui/material";
+import chunk from "lodash.chunk";
 
 const DailyWeather = ({ coordinates }) => {
     const dailyWeather = useDailyWeather(coordinates);
@@ -23,24 +24,36 @@ const DailyWeather = ({ coordinates }) => {
         };
     });
 
+    const ROWS = 3;
+    const chunkWeatherDetails = chunk(weatherDetails, ROWS);
+
     return (
-        <Stack>
-            {weatherDetails.map((wd) => {
+        <Grid
+            container
+            flexDirection="column"
+            spacing={2}
+            sx={{
+                gap: "10px",
+            }}
+        >
+            {chunkWeatherDetails.map((chunk, index) => {
                 return (
-                    <div key={wd.heading}>
-                        <h1>{wd.heading}</h1>
-                        <div
-                            style={{
-                                background: `no-repeat url(${wd.descriptionIcon}) center/80%`,
-                                height: "100px",
-                                width: "100px",
-                            }}
-                        ></div>
-                        <p>{wd.description}</p>
-                    </div>
+                    <Grid
+                        key={index}
+                        container
+                    >
+                        {chunk.map((dailyWeather) => {
+                            return (
+                                <UnitDataLayout
+                                    data={dailyWeather}
+                                    key={dailyWeather.heading}
+                                />
+                            );
+                        })}
+                    </Grid>
                 );
             })}
-        </Stack>
+        </Grid>
     );
 };
 
