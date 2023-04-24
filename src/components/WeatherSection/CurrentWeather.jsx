@@ -1,4 +1,4 @@
-import { useCurrentWeather } from "./api/weather";
+import { useCurrentWeather } from "./hooks/useCurrentWeather";
 
 import formatInTimeZone from "date-fns-tz/formatInTimeZone";
 
@@ -35,8 +35,10 @@ const CurrentWeather = ({ coordinates }) => {
         isDay
     );
 
-    const formattedDate = formatInTimeZone(new Date(), timezone, "PPPP");
-    const formattedTime = formatInTimeZone(new Date(), timezone, "p");
+    const presentDate = new Date();
+
+    const formattedDate = formatInTimeZone(presentDate, timezone, "PPPP");
+    const formattedTime = formatInTimeZone(presentDate, timezone, "p");
 
     const theme = createTheme({
         components: {

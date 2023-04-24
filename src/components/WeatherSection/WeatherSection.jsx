@@ -1,22 +1,24 @@
-import { useDailyWeather } from "./api/weather";
 import { useHourlyWeather } from "./api/weather";
 
 import CurrentWeather from "./CurrentWeather";
+import WeatherTab from "./WeatherTab";
 
 import { Grid } from "@mui/material";
 
 const WeatherSection = ({ coordinates }) => {
-    const dailyWeather = useDailyWeather(coordinates);
     const hourlyWeather = useHourlyWeather(coordinates);
 
-    if (dailyWeather.isLoading || hourlyWeather.isLoading) {
+    if (hourlyWeather.isLoading) {
         return null;
     }
 
     return (
-        <Grid>
+        <Grid container>
             <Grid item>
                 <CurrentWeather coordinates={coordinates} />
+            </Grid>
+            <Grid item>
+                <WeatherTab coordinates={coordinates} />
             </Grid>
         </Grid>
     );

@@ -9,23 +9,10 @@ const getData = async (coordinates, weatherParameters) => {
     return response.data;
 };
 
-const useWeatherQuery = (queryKeys, coordinates, weatherParameters) => {
+export const useWeatherQuery = (queryKeys, coordinates, weatherParameters) => {
     return useQuery([...queryKeys], () => {
         return getData(coordinates, weatherParameters);
     });
-};
-
-export const useCurrentWeather = (coordinates) => {
-    const currentParameters = "current_weather=true";
-    const queryKeys = ["currentWeather", coordinates];
-    return useWeatherQuery(queryKeys, coordinates, currentParameters);
-};
-
-export const useDailyWeather = (coordinates) => {
-    const dailyParameters =
-        "daily=weathercode,apparent_temperature_max,apparent_temperature_min";
-    const queryKeys = ["dailyWeather", coordinates];
-    return useWeatherQuery(queryKeys, coordinates, dailyParameters);
 };
 
 export const useHourlyWeather = (coordinates) => {

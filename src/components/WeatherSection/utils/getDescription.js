@@ -1,4 +1,4 @@
-export const getDescription = (weatherCode, isDay) => {
+export const getDescription = (weatherCode, isDay = 1) => {
     const descriptions = {
         0: "Clear sky",
         1: "Mainly clear",
