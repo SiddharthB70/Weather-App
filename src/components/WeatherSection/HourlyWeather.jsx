@@ -1,10 +1,9 @@
 import { useHourlyWeather } from "./hooks/useHourlyWeather";
 import { getDescription } from "./utils/getDescription";
-import UnitDataLayout from "./UnitDataLayout";
+import GridWeatherLayout from "./GridWeatherLayou";
 
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
-import { Grid } from "@mui/material";
 import chunk from "lodash.chunk";
 
 const HourlyWeather = ({ coordinates }) => {
@@ -34,35 +33,7 @@ const HourlyWeather = ({ coordinates }) => {
     const COLUMNS = 6;
     const chunkWeatherDetails = chunk(weatherDetails, COLUMNS);
 
-    return (
-        <Grid
-            container
-            flexDirection="column"
-            spacing={2}
-            sx={{
-                gap: "10px",
-            }}
-        >
-            {chunkWeatherDetails.map((chunk, index) => {
-                return (
-                    <Grid
-                        key={index}
-                        container
-                        justifyContent="center"
-                    >
-                        {chunk.map((dailyWeather) => {
-                            return (
-                                <UnitDataLayout
-                                    data={dailyWeather}
-                                    key={dailyWeather.heading}
-                                />
-                            );
-                        })}
-                    </Grid>
-                );
-            })}
-        </Grid>
-    );
+    return <GridWeatherLayout chunkWeatherDetails={chunkWeatherDetails} />;
 };
 
 export default HourlyWeather;

@@ -1,8 +1,7 @@
 import { useDailyWeather } from "./hooks/useDailyWeather";
 import { getDescription } from "./utils/getDescription";
-import UnitDataLayout from "./UnitDataLayout";
+import GridWeatherLayout from "./GridWeatherLayou";
 
-import { Grid } from "@mui/material";
 import chunk from "lodash.chunk";
 
 const DailyWeather = ({ coordinates }) => {
@@ -27,35 +26,7 @@ const DailyWeather = ({ coordinates }) => {
     const COLUMNS = 3;
     const chunkWeatherDetails = chunk(weatherDetails, COLUMNS);
 
-    return (
-        <Grid
-            container
-            flexDirection="column"
-            spacing={2}
-            sx={{
-                gap: "10px",
-            }}
-        >
-            {chunkWeatherDetails.map((chunk, index) => {
-                return (
-                    <Grid
-                        key={index}
-                        container
-                        justifyContent="center"
-                    >
-                        {chunk.map((dailyWeather) => {
-                            return (
-                                <UnitDataLayout
-                                    data={dailyWeather}
-                                    key={dailyWeather.heading}
-                                />
-                            );
-                        })}
-                    </Grid>
-                );
-            })}
-        </Grid>
-    );
+    return <GridWeatherLayout chunkWeatherDetails={chunkWeatherDetails} />;
 };
 
 export default DailyWeather;
