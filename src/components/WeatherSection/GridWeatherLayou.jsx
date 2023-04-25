@@ -1,7 +1,11 @@
-import { Grid } from "@mui/material";
 import UnitDataLayout from "./UnitDataLayout";
 
-const GridWeatherLayout = ({ chunkWeatherDetails }) => {
+import { Grid } from "@mui/material";
+import chunk from "lodash.chunk";
+
+const GridWeatherLayout = ({ weatherDetails, columns }) => {
+    const chunkWeatherDetails = chunk(weatherDetails, columns);
+
     return (
         <Grid
             container

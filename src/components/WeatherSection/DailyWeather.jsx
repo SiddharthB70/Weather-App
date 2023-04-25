@@ -2,8 +2,6 @@ import { useDailyWeather } from "./hooks/useDailyWeather";
 import { getDescription } from "./utils/getDescription";
 import GridWeatherLayout from "./GridWeatherLayou";
 
-import chunk from "lodash.chunk";
-
 const DailyWeather = ({ coordinates }) => {
     const dailyWeather = useDailyWeather(coordinates);
 
@@ -23,10 +21,12 @@ const DailyWeather = ({ coordinates }) => {
         };
     });
 
-    const COLUMNS = 3;
-    const chunkWeatherDetails = chunk(weatherDetails, COLUMNS);
-
-    return <GridWeatherLayout chunkWeatherDetails={chunkWeatherDetails} />;
+    return (
+        <GridWeatherLayout
+            weatherDetails={weatherDetails}
+            columns={3}
+        />
+    );
 };
 
 export default DailyWeather;

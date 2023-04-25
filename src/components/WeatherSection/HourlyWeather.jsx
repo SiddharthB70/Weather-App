@@ -4,7 +4,6 @@ import GridWeatherLayout from "./GridWeatherLayou";
 
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
-import chunk from "lodash.chunk";
 
 const HourlyWeather = ({ coordinates }) => {
     const hourlyWeather = useHourlyWeather(coordinates);
@@ -30,10 +29,12 @@ const HourlyWeather = ({ coordinates }) => {
         };
     });
 
-    const COLUMNS = 6;
-    const chunkWeatherDetails = chunk(weatherDetails, COLUMNS);
-
-    return <GridWeatherLayout chunkWeatherDetails={chunkWeatherDetails} />;
+    return (
+        <GridWeatherLayout
+            weatherDetails={weatherDetails}
+            columns={6}
+        />
+    );
 };
 
 export default HourlyWeather;
