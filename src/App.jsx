@@ -25,9 +25,18 @@ const App = () => {
                 styleOverrides: {
                     body: {
                         padding: "30px",
+                        height: "100vh",
+                        backgroundImage: "url(./background3.jpg)",
+                        backgroundColor: "#544b4b",
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundBlendMode: "multiply",
                     },
                 },
             },
+        },
+        palette: {
+            mode: "dark",
         },
     });
 

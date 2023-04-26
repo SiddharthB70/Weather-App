@@ -58,31 +58,31 @@ const CurrentWeather = ({ coordinates }) => {
             <List>
                 <ListItem>
                     <ListItemIcon>
-                        <TodayIcon />
+                        <TodayIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary={formattedDate} />
                 </ListItem>
                 <ListItem>
                     <ListItemIcon>
-                        <AccessTimeIcon />
+                        <AccessTimeIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary={formattedTime} />
                 </ListItem>
                 <ListItem>
                     <ListItemIcon>
-                        <DeviceThermostatIcon />
+                        <DeviceThermostatIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary={`${temperature} \u00b0C`} />
                 </ListItem>
                 <ListItem>
                     <ListItemIcon>
-                        <AirIcon />
+                        <AirIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary={`${windspeed} km/h`} />
                 </ListItem>
                 <ListItem>
                     <ListItemIcon>
-                        <DescriptionIcon />
+                        <DescriptionIcon sx={{ color: "white" }} />
                     </ListItemIcon>
                     <ListItemText primary={`${descriptionText}`} />
                 </ListItem>
