@@ -11,7 +11,7 @@ import { Grid, CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const App = () => {
     const [location, setLocation] = useState(
-        JSON.parse(DEFAULT_LOCATION) || ""
+        DEFAULT_LOCATION ? JSON.parse(DEFAULT_LOCATION) : ""
     );
     const locationData = useLocationDetails(location);
     let locationRegions, locationCoordinates;
