@@ -10,7 +10,9 @@ import { DEFAULT_LOCATION } from "./config";
 import { Grid, CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const App = () => {
-    const [location, setLocation] = useState(JSON.parse(DEFAULT_LOCATION));
+    const [location, setLocation] = useState(
+        JSON.parse(DEFAULT_LOCATION) || ""
+    );
     const locationData = useLocationDetails(location);
     let locationRegions, locationCoordinates;
 
