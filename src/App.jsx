@@ -5,11 +5,12 @@ import LocationSection from "./components/LocationSection/LocationSection";
 import WeatherTab from "./components/WeatherSection/WeatherTab";
 import CurrentWeather from "./components/WeatherSection/CurrentWeather";
 import { useLocationDetails } from "./api/locationDetails";
+import { DEFAULT_LOCATION } from "./config";
 
 import { Grid, CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const App = () => {
-    const [location, setLocation] = useState("");
+    const [location, setLocation] = useState(JSON.parse(DEFAULT_LOCATION));
     const locationData = useLocationDetails(location);
     let locationRegions, locationCoordinates;
 
