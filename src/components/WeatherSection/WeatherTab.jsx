@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { TabContext, TabPanel, TabList } from "@mui/lab";
-import { Tab, Box } from "@mui/material";
+import { Tab, Grid } from "@mui/material";
 
 import DailyWeather from "./DailyWeather";
 import HourlyWeather from "./HourlyWeather";
@@ -9,7 +9,11 @@ import HourlyWeather from "./HourlyWeather";
 const WeatherTab = ({ coordinates }) => {
     const [tab, setTab] = useState("1");
     return (
-        <Box>
+        <Grid
+            container
+            flexDirection="column"
+            alignItems="flex-end"
+        >
             <TabContext value={tab}>
                 <TabList
                     onChange={(e, newValue) => {
@@ -32,7 +36,7 @@ const WeatherTab = ({ coordinates }) => {
                     <HourlyWeather coordinates={coordinates} />
                 </TabPanel>
             </TabContext>
-        </Box>
+        </Grid>
     );
 };
 

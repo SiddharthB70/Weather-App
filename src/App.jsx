@@ -2,10 +2,11 @@ import { useState } from "react";
 
 import SearchBar from "./components/SearchBar/SearchBar";
 import LocationSection from "./components/LocationSection/LocationSection";
-import WeatherSection from "./components/WeatherSection/WeatherSection";
+import WeatherTab from "./components/WeatherSection/WeatherTab";
+import CurrentWeather from "./components/WeatherSection/CurrentWeather";
 import { useLocationDetails } from "./api/locationDetails";
 
-import { Grid } from "@mui/material";
+import { Grid, CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const App = () => {
     const [location, setLocation] = useState("");
@@ -17,39 +18,71 @@ const App = () => {
         locationCoordinates = locationData.data.location;
     }
 
+    const theme = createTheme({
+        components: {
+            MuiCssBaseline: {
+                styleOverrides: {
+                    body: {
+                        padding: "30px",
+                    },
+                },
+            },
+        },
+    });
+
     return (
-        <Grid
-            container
-            height="100vh"
-        >
-            <Grid
-                item
-                xs="auto"
-                container
-                direction="column"
-                spacing={3}
-            >
-                <Grid item>
-                    <SearchBar
-                        setLocation={setLocation}
-                        location={location.text}
-                    />
+        <ThemeProvider theme={theme}>
+            <CssBaseline>
+                <Grid
+                    container
+                    justifyContent="space-between"
+                >
+                    <Grid
+                        item
+                        xs="auto"
+                        container
+                        flexDirection="column"
+                        gap="10px"
+                    >
+                        <Grid
+                            item
+                            alignSelf="flex-end"
+                        >
+                            <SearchBar
+                                setLocation={setLocation}
+                                location={location.text}
+                            />
+                        </Grid>
+                        <Grid item>
+                            {locationData.isSuccess && (
+                                <div>
+                                    <LocationSection
+                                        regions={locationRegions}
+                                    />
+
+                                    <CurrentWeather
+                                        coordinates={locationCoordinates}
+                                    />
+                                </div>
+                            )}
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        item
+                        xs="auto"
+                        container
+                        flexDirection="column"
+                        alignItems="flex-end"
+                    >
+                        <Grid item>
+                            {locationData.isSuccess && (
+                                <WeatherTab coordinates={locationCoordinates} />
+                            )}
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Grid item>
-                    {locationData.isSuccess && (
-                        <LocationSection regions={locationRegions} />
-                    )}
-                </Grid>
-            </Grid>
-            <Grid
-                item
-                xs="auto"
-            >
-                {locationData.isSuccess && (
-                    <WeatherSection coordinates={locationCoordinates} />
-                )}
-            </Grid>
-        </Grid>
+            </CssBaseline>
+        </ThemeProvider>
     );
 };
 

@@ -4,13 +4,7 @@ import formatInTimeZone from "date-fns-tz/formatInTimeZone";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import {
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Typography,
-} from "@mui/material";
+import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 import TodayIcon from "@mui/icons-material/Today";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -63,9 +57,6 @@ const CurrentWeather = ({ coordinates }) => {
         <ThemeProvider theme={theme}>
             <List>
                 <ListItem>
-                    <Typography variant="h4">Current Weather</Typography>
-                </ListItem>
-                <ListItem>
                     <ListItemIcon>
                         <TodayIcon />
                     </ListItemIcon>
@@ -98,7 +89,8 @@ const CurrentWeather = ({ coordinates }) => {
                 <ListItem
                     sx={{
                         height: "150px",
-                        background: `no-repeat url(${descriptionIcon}) center/80%`,
+                        width: "160px",
+                        background: `no-repeat url(${descriptionIcon}) center/110%`,
                     }}
                 ></ListItem>
             </List>

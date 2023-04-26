@@ -13,7 +13,7 @@ const HourlyWeather = ({ coordinates }) => {
     return (
         <GridWeatherLayout
             weatherDetails={weatherDetails}
-            columns={6}
+            columns={8}
         />
     );
 };
